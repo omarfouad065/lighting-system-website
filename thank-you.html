@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Tiger Light System</title>
+    <meta name="description" content="Thank you for contacting us. Here is a summary of your submission.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#FFD700',
+                        'purple': '#8B5CF6',
+                        'pink': '#EC4899',
+                        'blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-poppins dark-bg-primary dark-text-primary">
+    <nav class="fixed top-0 w-full z-50 dark-nav shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-bolt mr-2 text-gold"></i>Tiger Light System
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="services.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="about.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <a href="contact.html" class="dark-text-secondary hover:text-purple-400 focus:outline-none">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-12 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Thank You</h1>
+            <p class="text-xl md:text-2xl text-purple-100">We received your message. A copy is shown below.</p>
+        </div>
+    </section>
+
+    <section class="py-16 dark-bg-secondary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dark-card rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold dark-text-primary mb-6">Submission Details</h2>
+                <div id="submission" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm dark-text-muted">First Name</p>
+                            <p id="v-firstName" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Last Name</p>
+                            <p id="v-lastName" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Email</p>
+                            <p id="v-email" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Phone</p>
+                            <p id="v-phone" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Event Type</p>
+                            <p id="v-eventType" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Event Date</p>
+                            <p id="v-eventDate" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div>
+                            <p class="text-sm dark-text-muted">Budget</p>
+                            <p id="v-budget" class="text-lg dark-text-primary font-semibold">&nbsp;</p>
+                        </div>
+                        <div class="md:col-span-2">
+                            <p class="text-sm dark-text-muted">Message</p>
+                            <p id="v-message" class="text-lg dark-text-primary whitespace-pre-line font-semibold">&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <a href="contact.html" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-4 rounded-lg text-center hover:shadow-lg transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Contact
+                    </a>
+                    <a id="mailtoLink" href="#" class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i>Email a copy
+                    </a>
+                    <a href="submissions.html" class="flex-1 bg-gray-700 text-white py-3 px-4 rounded-lg text-center hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-database mr-2"></i>View submissions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="dark-bg-primary text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center dark-text-muted">
+            <p>&copy; 2024 Luminous Events. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function getParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || '';
+        }
+
+        function setText(id, value, fallback) {
+            const el = document.getElementById(id);
+            el.textContent = value && value.trim() ? value : (fallback || 'Not provided');
+        }
+
+        (function populate() {
+            const firstName = getParam('firstName');
+            const lastName = getParam('lastName');
+            const email = getParam('email');
+            const phone = getParam('phone');
+            const eventType = getParam('eventType');
+            const eventDate = getParam('eventDate');
+            const budget = getParam('budget');
+            const message = getParam('message');
+
+            setText('v-firstName', firstName);
+            setText('v-lastName', lastName);
+            setText('v-email', email);
+            setText('v-phone', phone);
+            setText('v-eventType', eventType);
+            setText('v-eventDate', eventDate);
+            setText('v-budget', budget);
+            setText('v-message', message);
+
+            const subject = encodeURIComponent('New Contact Form Submission');
+            const bodyParts = [
+                `First Name: ${firstName || ''}`,
+                `Last Name: ${lastName || ''}`,
+                `Email: ${email || ''}`,
+                `Phone: ${phone || ''}`,
+                `Event Type: ${eventType || ''}`,
+                `Event Date: ${eventDate || ''}`,
+                `Budget: ${budget || ''}`,
+                '',
+                'Message:',
+                `${message || ''}`
+            ];
+            const body = encodeURIComponent(bodyParts.join('\n'));
+            const mailto = `mailto:${email ? email : ''}?subject=${subject}&body=${body}`;
+            const mailtoLink = document.getElementById('mailtoLink');
+            mailtoLink.href = mailto;
+
+            // Save to localStorage once per session for this exact submission
+            try {
+                const query = window.location.search || '';
+                const sessionKey = `contact_saved:${query}`;
+                if (!sessionStorage.getItem(sessionKey)) {
+                    const entry = {
+                        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                        createdAt: new Date().toISOString(),
+                        firstName, lastName, email, phone, eventType, eventDate, budget, message
+                    };
+                    const key = 'contact_submissions';
+                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                    existing.push(entry);
+                    localStorage.setItem(key, JSON.stringify(existing));
+                    sessionStorage.setItem(sessionKey, '1');
+                }
+            } catch (e) {
+                console.warn('Could not save submission locally', e);
+            }
+        })();
+    </script>
+</body>
+
+</html>
+
+

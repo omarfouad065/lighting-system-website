@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Tiger Light System</title>
+    <meta name="description" content="Professional lighting services for weddings, parties, festivals, and special events. Custom lighting solutions and expert installation.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#FFD700',
+                        'purple': '#8B5CF6',
+                        'pink': '#EC4899',
+                        'blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="font-poppins dark-bg-primary dark-text-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 dark-nav shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-bolt mr-2 text-gold"></i>Tiger Light System
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="services.html" class="nav-link dark-text-primary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="about.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="dark-text-secondary hover:text-purple-400 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden dark-bg-secondary shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Home</a>
+                <a href="services.html" class="block px-3 py-2 dark-text-primary hover:text-purple-400">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Portfolio</a>
+                <a href="about.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">About</a>
+                <a href="contact.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                Our <span class="text-gold">Lighting Services</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto">
+                From intimate weddings to grand festivals, we provide comprehensive lighting solutions that bring your vision to life
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-20 dark-bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Wedding Lighting -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-pink-500 to-purple-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Wedding Lighting</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Create the perfect romantic atmosphere for your special day with our custom wedding lighting designs.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Ceremony lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Reception ambiance
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Photo booth lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Dance floor effects
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Stage Lighting -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-microphone text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Stage Lighting</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Professional stage lighting for concerts, performances, and corporate events with dynamic effects.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Concert lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Theater productions
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Corporate presentations
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Live streaming setup
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Outdoor Lighting -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-green-500 to-blue-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tree text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Outdoor Lighting</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Transform outdoor spaces with weather-resistant lighting solutions for gardens, patios, and events.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Garden lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Patio ambiance
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Pathway lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Weather protection
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Decorative Lights -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Decorative Lights</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Add magical touches with decorative lighting including fairy lights, chandeliers, and custom fixtures.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Fairy light displays
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Chandelier installation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Custom fixtures
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Holiday decorations
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Custom Solutions -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Custom Solutions</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Tailored lighting designs for unique events and special requirements with personalized consultation.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Design consultation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Custom fixtures
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Special effects
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Project management
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Festival Lighting -->
+                <div class="service-card dark-card rounded-2xl p-8 shadow-lg">
+                    <div class="bg-gradient-to-br from-red-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-music text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold dark-text-primary mb-4">Festival Lighting</h3>
+                    <p class="dark-text-secondary mb-6">
+                        Large-scale lighting for festivals, concerts, and outdoor events with professional sound integration.
+                    </p>
+                    <ul class="space-y-2 mb-6 dark-text-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Festival stages
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Sound integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Weather protection
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            24/7 support
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="inline-block bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 dark-bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold dark-text-primary mb-4">Our Process</h2>
+                <p class="text-xl dark-text-secondary max-w-3xl mx-auto">
+                    From initial consultation to event execution, we ensure a seamless experience
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-4">Consultation</h3>
+                    <p class="dark-text-secondary">We discuss your vision, requirements, and budget to create the perfect lighting plan.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-4">Design</h3>
+                    <p class="dark-text-secondary">Our team creates custom lighting designs and 3D visualizations for your approval.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-green-500 to-blue-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-4">Installation</h3>
+                    <p class="dark-text-secondary">Professional installation and testing to ensure everything works perfectly for your event.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-4">Support</h3>
+                    <p class="dark-text-secondary">On-site support during your event and complete breakdown and cleanup afterward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Pricing Packages</h2>
+                <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    Choose the perfect package for your event size and requirements
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">Basic Package</h3>
+                    <div class="text-4xl font-bold mb-6">$299<span class="text-lg">/event</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Up to 4 hours of lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Basic setup and teardown
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Standard lighting fixtures
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            On-site technician
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        Choose Plan
+                    </a>
+                </div>
+                <div class="bg-white/20 backdrop-blur-md rounded-2xl p-8 text-white border-2 border-gold">
+                    <div class="text-center mb-4">
+                        <span class="bg-gold text-gray-900 px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Premium Package</h3>
+                    <div class="text-4xl font-bold mb-6">$599<span class="text-lg">/event</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Up to 8 hours of lighting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Custom design consultation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Premium lighting fixtures
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Color-changing effects
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Dedicated technician
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full bg-gold text-gray-900 text-center py-3 rounded-full font-semibold hover:bg-yellow-300 transition-colors">
+                        Choose Plan
+                    </a>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">Luxury Package</h3>
+                    <div class="text-4xl font-bold mb-6">$999<span class="text-lg">/event</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Unlimited lighting hours
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Full design and planning
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            High-end lighting equipment
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Advanced effects and controls
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Full team support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            24/7 emergency support
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        Choose Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Light Up Your Event?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Contact us today for a free consultation and custom quote
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gradient-to-r from-gold to-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-calendar-alt mr-2"></i>Book Consultation
+                </a>
+                <a href="tel:+1234567890" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-phone mr-2"></i>Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <i class="fas fa-lightbulb mr-2 text-gold"></i>Luminous Events
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Creating magical moments with professional lighting systems for weddings, parties, and festivals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-gold transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Wedding Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Stage Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Outdoor Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>123 Lighting Ave, City, State 12345</p>
+                        <p><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@luminousevents.com</p>
+                        <p><i class="fas fa-clock mr-2"></i>Mon-Fri: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Luminous Events. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

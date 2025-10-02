@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Tiger Light System</title>
+    <meta name="description" content="View our portfolio of professional lighting projects for weddings, parties, festivals, and special events.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#FFD700',
+                        'purple': '#8B5CF6',
+                        'pink': '#EC4899',
+                        'blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .portfolio-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation: zoom 0.6s;
+        }
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-poppins dark-bg-primary dark-text-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 dark-nav shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-bolt mr-2 text-gold"></i>Tiger Light System
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="services.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="nav-link dark-text-primary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="about.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="dark-text-secondary hover:text-purple-400 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden dark-bg-secondary shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Home</a>
+                <a href="services.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 dark-text-primary hover:text-purple-400">Portfolio</a>
+                <a href="about.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">About</a>
+                <a href="contact.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                Our <span class="text-gold">Portfolio</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto">
+                Explore our stunning lighting projects and see how we've transformed events into magical experiences
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="py-8 dark-bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="filter-btn active bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn dark-card dark-text-secondary px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-colors" data-filter="wedding">
+                    Weddings
+                </button>
+                <button class="filter-btn dark-card dark-text-secondary px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-colors" data-filter="corporate">
+                    Corporate
+                </button>
+                <button class="filter-btn dark-card dark-text-secondary px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-colors" data-filter="festival">
+                    Festivals
+                </button>
+                <button class="filter-btn dark-card dark-text-secondary px-6 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-colors" data-filter="outdoor">
+                    Outdoor
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="py-20 dark-bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                <!-- Wedding Project 1 -->
+                <div class="portfolio-item wedding" data-category="wedding">
+                    <div class="bg-gradient-to-br from-pink-500 to-purple-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Romantic Garden Wedding</h3>
+                    <p class="dark-text-secondary mb-4">Elegant fairy lights and warm ambient lighting created a magical atmosphere for Sarah & John's garden wedding.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Wedding • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal1')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Corporate Project -->
+                <div class="portfolio-item corporate" data-category="corporate">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Tech Conference Stage</h3>
+                    <p class="dark-text-secondary mb-4">Dynamic LED lighting system for a major technology conference with synchronized color changes and effects.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Corporate • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal2')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Festival Project -->
+                <div class="portfolio-item festival" data-category="festival">
+                    <div class="bg-gradient-to-br from-red-500 to-pink-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Summer Music Festival</h3>
+                    <p class="dark-text-secondary mb-4">Massive outdoor lighting setup with laser shows and synchronized effects for a 3-day music festival.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Festival • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal3')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Outdoor Project -->
+                <div class="portfolio-item outdoor" data-category="outdoor">
+                    <div class="bg-gradient-to-br from-green-500 to-blue-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Garden Party Lighting</h3>
+                    <p class="dark-text-secondary mb-4">Beautiful outdoor lighting for a garden party with weather-resistant fixtures and ambient lighting.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Outdoor • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal4')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wedding Project 2 -->
+                <div class="portfolio-item wedding" data-category="wedding">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Luxury Ballroom Wedding</h3>
+                    <p class="dark-text-secondary mb-4">Opulent chandelier lighting and custom LED installations for a high-end ballroom wedding celebration.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Wedding • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal5')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Corporate Project 2 -->
+                <div class="portfolio-item corporate" data-category="corporate">
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-500 h-64 rounded-2xl flex items-center justify-center text-white text-6xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold dark-text-primary mb-2">Product Launch Event</h3>
+                    <p class="dark-text-secondary mb-4">Interactive lighting display for a product launch with motion-activated effects and dynamic color schemes.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm dark-text-muted">Corporate • 2024</span>
+                        <button class="text-purple-600 hover:text-purple-800 font-semibold" onclick="openModal('modal6')">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Portfolio Section -->
+    <section class="py-20 dark-bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold dark-text-primary mb-4">Video Showcase</h2>
+                <p class="text-xl dark-text-secondary max-w-3xl mx-auto">
+                    Watch our lighting systems in action and see the magic we create
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
+                    <div class="bg-white/20 backdrop-blur-md rounded-xl h-64 flex items-center justify-center mb-6">
+                        <i class="fas fa-play-circle text-6xl text-white/80"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Wedding Lighting Magic</h3>
+                    <p class="text-purple-100 mb-6">See how we transformed a simple garden into a fairy tale setting with our custom lighting design.</p>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        <i class="fas fa-play mr-2"></i>Watch Video
+                    </button>
+                </div>
+                <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+                    <div class="bg-white/20 backdrop-blur-md rounded-xl h-64 flex items-center justify-center mb-6">
+                        <i class="fas fa-play-circle text-6xl text-white/80"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Festival Light Show</h3>
+                    <p class="text-blue-100 mb-6">Experience the energy of our festival lighting setup with synchronized effects and dynamic colors.</p>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        <i class="fas fa-play mr-2"></i>Watch Video
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Client Testimonials</h2>
+                <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    Hear what our clients say about our lighting services
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-lg mb-6">"The lighting was absolutely perfect for our wedding. Every guest commented on how beautiful everything looked!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">SJ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <p class="text-purple-200">Wedding Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-lg mb-6">"Professional, creative, and delivered beyond our expectations. The festival lighting was incredible!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Mike Rodriguez</h4>
+                            <p class="text-purple-200">Event Organizer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-lg mb-6">"The team was amazing to work with. They understood our vision and brought it to life perfectly."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">AL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Anna Lee</h4>
+                            <p class="text-purple-200">Corporate Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Create Your Own Magic?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Let us bring your lighting vision to life with our professional services
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gradient-to-r from-gold to-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-calendar-alt mr-2"></i>Book Consultation
+                </a>
+                <a href="services.html" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-lightbulb mr-2"></i>View Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <i class="fas fa-lightbulb mr-2 text-gold"></i>Luminous Events
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Creating magical moments with professional lighting systems for weddings, parties, and festivals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-gold transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Wedding Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Stage Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Outdoor Lighting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-gold transition-colors">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>123 Lighting Ave, City, State 12345</p>
+                        <p><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@luminousevents.com</p>
+                        <p><i class="fas fa-clock mr-2"></i>Mon-Fri: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Luminous Events. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Portfolio filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-purple-600', 'text-white');
+                        btn.classList.add('bg-white', 'text-gray-700');
+                    });
+                    this.classList.add('active', 'bg-purple-600', 'text-white');
+                    this.classList.remove('bg-white', 'text-gray-700');
+
+                    // Filter portfolio items
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            // Add modal content based on the project
+            let content = '';
+            switch(modalId) {
+                case 'modal1':
+                    content = `
+                        <div class="bg-gradient-to-br from-pink-500 to-purple-500 h-96 rounded-2xl flex items-center justify-center text-white text-8xl mb-6">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white mb-4">Romantic Garden Wedding</h2>
+                        <p class="text-gray-300 text-lg mb-6">Sarah & John's dream wedding came to life with our custom lighting design. We created a magical atmosphere using fairy lights, warm ambient lighting, and custom LED installations throughout the garden venue.</p>
+                        <div class="grid grid-cols-2 gap-4 text-white">
+                            <div>
+                                <h4 class="font-semibold mb-2">Services Used:</h4>
+                                <ul class="space-y-1 text-gray-300">
+                                    <li>• Fairy light installation</li>
+                                    <li>• Ambient lighting</li>
+                                    <li>• Custom LED fixtures</li>
+                                    <li>• Photo booth lighting</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Event Details:</h4>
+                                <ul class="space-y-1 text-gray-300">
+                                    <li>• 150 guests</li>
+                                    <li>• Outdoor garden venue</li>
+                                    <li>• 6-hour event</li>
+                                    <li>• Weather protection</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'modal2':
+                    content = `
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-500 h-96 rounded-2xl flex items-center justify-center text-white text-8xl mb-6">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white mb-4">Tech Conference Stage</h2>
+                        <p class="text-gray-300 text-lg mb-6">A dynamic LED lighting system for a major technology conference featuring synchronized color changes, interactive effects, and professional stage lighting for presentations and keynote speeches.</p>
+                        <div class="grid grid-cols-2 gap-4 text-white">
+                            <div>
+                                <h4 class="font-semibold mb-2">Services Used:</h4>
+                                <ul class="space-y-1 text-gray-300">
+                                    <li>• LED stage lighting</li>
+                                    <li>• Color synchronization</li>
+                                    <li>• Interactive effects</li>
+                                    <li>• Professional controls</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Event Details:</h4>
+                                <ul class="space-y-1 text-gray-300">
+                                    <li>• 500+ attendees</li>
+                                    <li>• Convention center</li>
+                                    <li>• 3-day event</li>
+                                    <li>• Live streaming setup</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                // Add more cases for other modals...
+                default:
+                    content = `
+                        <div class="bg-gradient-to-br from-purple-500 to-pink-500 h-96 rounded-2xl flex items-center justify-center text-white text-8xl mb-6">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white mb-4">Project Details</h2>
+                        <p class="text-gray-300 text-lg mb-6">This project showcases our expertise in creating stunning lighting experiences for various events and venues.</p>
+                    `;
+            }
+            
+            modalBody.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('modal');
+            if (e.target === modal || e.target.classList.contains('close')) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

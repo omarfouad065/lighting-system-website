@@ -1,0 +1,471 @@
+ !DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tiger Light System</title>
+    <meta name="description"
+        content="Get in touch with Luminous Events for professional lighting services. Contact us for quotes, consultations, and event planning.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#FFD700',
+                        'purple': '#8B5CF6',
+                        'pink': '#EC4899',
+                        'blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="font-poppins dark-bg-primary dark-text-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 dark-nav shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-bolt mr-2 text-gold"></i>Tiger Light System
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html"
+                            class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="services.html"
+                            class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html"
+                            class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="about.html"
+                            class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html"
+                            class="nav-link dark-text-primary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="dark-text-secondary hover:text-purple-400 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden dark-bg-secondary shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Home</a>
+                <a href="services.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">Portfolio</a>
+                <a href="about.html" class="block px-3 py-2 dark-text-secondary hover:text-purple-400">About</a>
+                <a href="contact.html" class="block px-3 py-2 dark-text-primary hover:text-purple-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                Get In <span class="text-gold">Touch</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto">
+                Ready to illuminate your next event? Let's discuss your vision and bring it to life
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="py-20 dark-bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="dark-card rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-3xl font-bold dark-text-primary mb-6">Send us a Message</h2>
+                    <form id="contact-form" name="contact" method="GET" action="thank-you.html" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium dark-text-secondary mb-2">First
+                                    Name *</label>
+                                <input type="text" id="firstName" name="firstName" required
+                                    class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium dark-text-secondary mb-2">Last
+                                    Name *</label>
+                                <input type="text" id="lastName" name="lastName" required
+                                    class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium dark-text-secondary mb-2">Email Address
+                                *</label>
+                            <input type="email" id="email" name="email" required
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium dark-text-secondary mb-2">Phone
+                                Number</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="eventType" class="block text-sm font-medium dark-text-secondary mb-2">Event
+                                Type</label>
+                            <select id="eventType" name="eventType"
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="festival">Festival</option>
+                                <option value="party">Party</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="eventDate" class="block text-sm font-medium dark-text-secondary mb-2">Event
+                                Date</label>
+                            <input type="date" id="eventDate" name="eventDate"
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-sm font-medium dark-text-secondary mb-2">Budget
+                                Range</label>
+                            <select id="budget" name="budget"
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                <option value="">Select Budget Range</option>
+                                <option value="under-500">Under $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-2500">$1,000 - $2,500</option>
+                                <option value="2500-5000">$2,500 - $5,000</option>
+                                <option value="over-5000">Over $5,000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium dark-text-secondary mb-2">Message
+                                *</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                placeholder="Tell us about your event and lighting vision..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info & Map -->
+                <div class="space-y-8">
+                    <!-- Contact Information -->
+                    <div class="dark-card rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-3xl font-bold dark-text-primary mb-6">Contact Information</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-gradient-to-br from-purple-500 to-pink-500 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold dark-text-primary mb-1">Address</h3>
+                                    <p class="dark-text-secondary">123 Lighting Avenue<br>Creative District, City, State
+                                        12345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-gradient-to-br from-blue-500 to-purple-500 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold dark-text-primary mb-1">Phone</h3>
+                                    <p class="dark-text-secondary">+1 (555) 123-4567<br>+1 (555) 123-4568 (Emergency)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-gradient-to-br from-green-500 to-blue-500 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold dark-text-primary mb-1">Email</h3>
+                                    <p class="dark-text-secondary">info@luminousevents.com<br>support@luminousevents.com
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-gradient-to-br from-yellow-500 to-orange-500 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold dark-text-primary mb-1">Business Hours</h3>
+                                    <p class="dark-text-secondary">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00
+                                        AM - 4:00 PM<br>Sunday: Emergency calls only</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Maps -->
+                    <div class="dark-card rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-3xl font-bold dark-text-primary mb-6">Find Us</h2>
+                        <div class="dark-bg-tertiary rounded-lg h-64 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-4xl dark-text-muted mb-4"></i>
+                                <p class="dark-text-secondary">Interactive Google Map</p>
+                                <p class="text-sm dark-text-muted">123 Lighting Avenue, Creative District</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-col sm:flex-row gap-4">
+                            <a href="https://maps.google.com" target="_blank"
+                                class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-directions mr-2"></i>Get Directions
+                            </a>
+                            <a href="tel:+15551234567"
+                                class="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg text-center hover:bg-green-700 transition-colors">
+                                <i class="fas fa-phone mr-2"></i>Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 dark-bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold dark-text-primary mb-4">Frequently Asked Questions</h2>
+                <p class="text-xl dark-text-secondary max-w-3xl mx-auto">
+                    Get answers to common questions about our lighting services
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div class="dark-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold dark-text-primary mb-3">How far in advance should I book?</h3>
+                        <p class="dark-text-secondary">We recommend booking at least 2-3 months in advance for weddings
+                            and large events. For smaller events, 2-4 weeks notice is usually sufficient.</p>
+                    </div>
+                    <div class="dark-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold dark-text-primary mb-3">Do you provide setup and teardown?</h3>
+                        <p class="dark-text-secondary">Yes, all our packages include professional setup and teardown.
+                            Our team handles everything from installation to cleanup.</p>
+                    </div>
+                    <div class="dark-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold dark-text-primary mb-3">What if it rains on my outdoor event?</h3>
+                        <p class="dark-text-secondary">We use weather-resistant equipment and have backup plans for
+                            outdoor events. We also offer tent lighting solutions for added protection.</p>
+                    </div>
+                    <div class="dark-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold dark-text-primary mb-3">Can you work with my venue's restrictions?
+                        </h3>
+                        <p class="dark-text-secondary">Absolutely! We work closely with venues to ensure all
+                            installations meet their requirements and safety standards.</p>
+                    </div>
+                    <div class="dark-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold dark-text-primary mb-3">Do you offer emergency support?</h3>
+                        <p class="dark-text-secondary">Yes, we provide 24/7 emergency support for all our events. Our
+                            team is always available to address any issues immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Follow Our Journey</h2>
+                <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    Stay connected and see our latest projects on social media
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white text-center">
+                    <i class="fab fa-instagram text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Instagram</h3>
+                    <p class="text-purple-100 mb-6">Follow us for behind-the-scenes content and stunning event photos
+                    </p>
+                    <a href="#"
+                        class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        Follow @luminousevents
+                    </a>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white text-center">
+                    <i class="fab fa-facebook text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Facebook</h3>
+                    <p class="text-purple-100 mb-6">Join our community and stay updated with our latest news and events
+                    </p>
+                    <a href="#"
+                        class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        Like Our Page
+                    </a>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white text-center">
+                    <i class="fab fa-youtube text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">YouTube</h3>
+                    <p class="text-purple-100 mb-6">Watch our lighting setups in action and learn about our process</p>
+                    <a href="#"
+                        class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-500 hover:to-pink-500 transition-colors">
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Get Started?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Contact us today for a free consultation and custom quote
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+15551234567"
+                    class="bg-gradient-to-r from-gold to-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-phone mr-2"></i>Call Now
+                </a>
+                <a href="mailto:info@luminousevents.com"
+                    class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-envelope mr-2"></i>Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dark-bg-primary text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <i class="fas fa-lightbulb mr-2 text-gold"></i>Luminous Events
+                    </h3>
+                    <p class="dark-text-muted mb-4">
+                        Creating magical moments with professional lighting systems for weddings, parties, and
+                        festivals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="dark-text-muted hover:text-gold transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="dark-text-muted hover:text-gold transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="dark-text-muted hover:text-gold transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="dark-text-muted hover:text-gold transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="dark-text-muted hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="services.html"
+                                class="dark-text-muted hover:text-gold transition-colors">Services</a></li>
+                        <li><a href="portfolio.html"
+                                class="dark-text-muted hover:text-gold transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="dark-text-muted hover:text-gold transition-colors">About</a>
+                        </li>
+                        <li><a href="contact.html" class="dark-text-muted hover:text-gold transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="dark-text-muted hover:text-gold transition-colors">Wedding
+                                Lighting</a></li>
+                        <li><a href="services.html" class="dark-text-muted hover:text-gold transition-colors">Stage
+                                Lighting</a></li>
+                        <li><a href="services.html" class="dark-text-muted hover:text-gold transition-colors">Outdoor
+                                Lighting</a></li>
+                        <li><a href="services.html" class="dark-text-muted hover:text-gold transition-colors">Custom
+                                Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 dark-text-muted">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>123 Lighting Ave, City, State 12345</p>
+                        <p><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@luminousevents.com</p>
+                        <p><i class="fas fa-clock mr-2"></i>Mon-Fri: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center dark-text-muted">
+                <p>&copy; 2024 Luminous Events. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Contact form handling (runs when no external action is configured)
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm && !contactForm.getAttribute('action')) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                if (!data.firstName || !data.lastName || !data.email || !data.message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.disabled = true;
+                setTimeout(() => {
+                    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

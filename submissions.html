@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submissions - Tiger Light System</title>
+    <meta name="description" content="Admin page to view contact submissions saved locally.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#FFD700',
+                        'purple': '#8B5CF6',
+                        'pink': '#EC4899',
+                        'blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-poppins dark-bg-primary dark-text-primary">
+    <nav class="fixed top-0 w-full z-50 dark-nav shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-purple-600">
+                        <i class="fas fa-bolt mr-2 text-gold"></i>Tiger Light System
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="services.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="about.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="nav-link dark-text-secondary hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <a href="contact.html" class="dark-text-secondary hover:text-purple-400 focus:outline-none">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-8 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white">Contact Submissions</h1>
+                    <p class="text-purple-100 mt-2">This data is stored locally in your browser.</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="contact.html" class="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30"><i class="fas fa-plus mr-2"></i>New submission</a>
+                    <button id="exportBtn" class="bg-white text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100"><i class="fas fa-file-export mr-2"></i>Export CSV</button>
+                    <button id="clearAllBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"><i class="fas fa-trash mr-2"></i>Delete all</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 dark-bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dark-card rounded-2xl p-6 shadow-lg">
+                <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between mb-4">
+                    <input id="search" type="text" placeholder="Search name, email, phone, message..." class="dark-form-input w-full sm:w-1/2 px-4 py-3 rounded-lg">
+                    <div class="text-sm dark-text-muted">Total: <span id="count">0</span></div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left align-middle">
+                        <thead>
+                            <tr class="text-xs uppercase dark-text-muted border-b border-gray-700">
+                                <th class="py-3 pr-4">Date</th>
+                                <th class="py-3 pr-4">Name</th>
+                                <th class="py-3 pr-4">Email</th>
+                                <th class="py-3 pr-4">Phone</th>
+                                <th class="py-3 pr-4">Event</th>
+                                <th class="py-3 pr-4">Budget</th>
+                                <th class="py-3 pr-4">Message</th>
+                                <th class="py-3 pr-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows" class="text-sm"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="dark-bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center dark-text-muted">
+            <p>&copy; 2024 Luminous Events. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const STORAGE_KEY = 'contact_submissions';
+
+        function loadSubmissions() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveSubmissions(items) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+        }
+
+        function humanDate(iso) {
+            try { return new Date(iso).toLocaleString(); } catch { return iso; }
+        }
+
+        function render(filterText) {
+            const tbody = document.getElementById('rows');
+            const countEl = document.getElementById('count');
+            const items = loadSubmissions();
+            const q = (filterText || '').toLowerCase();
+            const filtered = !q ? items : items.filter(x => [
+                x.firstName, x.lastName, x.email, x.phone, x.eventType, x.budget, x.message
+            ].filter(Boolean).some(v => String(v).toLowerCase().includes(q)));
+
+            tbody.innerHTML = '';
+            filtered.slice().reverse().forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-800';
+                tr.innerHTML = `
+                    <td class="py-3 pr-4 align-top">${humanDate(item.createdAt)}</td>
+                    <td class="py-3 pr-4 align-top">${(item.firstName || '') + ' ' + (item.lastName || '')}</td>
+                    <td class="py-3 pr-4 align-top">${item.email || ''}</td>
+                    <td class="py-3 pr-4 align-top">${item.phone || ''}</td>
+                    <td class="py-3 pr-4 align-top">${item.eventType || ''} ${item.eventDate ? '(' + item.eventDate + ')' : ''}</td>
+                    <td class="py-3 pr-4 align-top">${item.budget || ''}</td>
+                    <td class="py-3 pr-4 align-top max-w-xl">${(item.message || '').replace(/</g, '&lt;')}</td>
+                    <td class="py-3 pr-4 align-top whitespace-nowrap">
+                        <button data-id="${item.id}" class="del px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            countEl.textContent = String(filtered.length);
+
+            // bind delete buttons
+            tbody.querySelectorAll('button.del').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const items2 = loadSubmissions().filter(x => x.id !== id);
+                    saveSubmissions(items2);
+                    render(document.getElementById('search').value);
+                });
+            });
+        }
+
+        function exportCSV() {
+            const items = loadSubmissions();
+            const headers = ['createdAt','firstName','lastName','email','phone','eventType','eventDate','budget','message'];
+            const esc = v => '"' + String(v ?? '').replace(/"/g, '""').replace(/\n/g, '\\n') + '"';
+            const rows = [headers.join(',')].concat(items.map(x => headers.map(h => esc(x[h])).join(',')));
+            const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'contact_submissions.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            render('');
+            document.getElementById('search').addEventListener('input', (e) => render(e.target.value));
+            document.getElementById('exportBtn').addEventListener('click', exportCSV);
+            document.getElementById('clearAllBtn').addEventListener('click', () => {
+                if (confirm('Delete all submissions?')) {
+                    saveSubmissions([]);
+                    render('');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
