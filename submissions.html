@@ -106,14 +106,23 @@
         </div>
     </footer>
 
+    <script src="js/sheets-integration.js"></script>
     <script>
         const STORAGE_KEY = 'contact_submissions';
 
-        function loadSubmissions() {
+        async function loadSubmissions() {
             try {
+                // Try to load from Google Sheets first
+                const sheetsData = await window.sheetsIntegration.loadFromSheets();
+                if (sheetsData && sheetsData.length > 0) {
+                    return sheetsData;
+                }
+                
+                // Fallback to localStorage
                 return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
             } catch (e) {
-                return [];
+                console.warn('Could not load from Google Sheets, using localStorage:', e);
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
             }
         }
 
@@ -125,10 +134,10 @@
             try { return new Date(iso).toLocaleString(); } catch { return iso; }
         }
 
-        function render(filterText) {
+        async function render(filterText) {
             const tbody = document.getElementById('rows');
             const countEl = document.getElementById('count');
-            const items = loadSubmissions();
+            const items = await loadSubmissions();
             const q = (filterText || '').toLowerCase();
             const filtered = !q ? items : items.filter(x => [
                 x.firstName, x.lastName, x.email, x.phone, x.eventType, x.budget, x.message
@@ -139,15 +148,15 @@
                 const tr = document.createElement('tr');
                 tr.className = 'border-b border-gray-800';
                 tr.innerHTML = `
-                    <td class="py-3 pr-4 align-top">${humanDate(item.createdAt)}</td>
-                    <td class="py-3 pr-4 align-top">${(item.firstName || '') + ' ' + (item.lastName || '')}</td>
+                    <td class="py-3 pr-4 align-top">${humanDate(item.timestamp || item.createdAt)}</td>
+                    <td class="py-3 pr-4 align-top">${(item.firstname || item.firstName || '') + ' ' + (item.lastname || item.lastName || '')}</td>
                     <td class="py-3 pr-4 align-top">${item.email || ''}</td>
                     <td class="py-3 pr-4 align-top">${item.phone || ''}</td>
-                    <td class="py-3 pr-4 align-top">${item.eventType || ''} ${item.eventDate ? '(' + item.eventDate + ')' : ''}</td>
+                    <td class="py-3 pr-4 align-top">${item.eventtype || item.eventType || ''} ${(item.eventdate || item.eventDate) ? '(' + (item.eventdate || item.eventDate) + ')' : ''}</td>
                     <td class="py-3 pr-4 align-top">${item.budget || ''}</td>
                     <td class="py-3 pr-4 align-top max-w-xl">${(item.message || '').replace(/</g, '&lt;')}</td>
                     <td class="py-3 pr-4 align-top whitespace-nowrap">
-                        <button data-id="${item.id}" class="del px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"><i class="fas fa-trash"></i></button>
+                        <button data-id="${item.id || 'unknown'}" class="del px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"><i class="fas fa-trash"></i></button>
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -156,20 +165,20 @@
 
             // bind delete buttons
             tbody.querySelectorAll('button.del').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', async () => {
                     const id = btn.getAttribute('data-id');
-                    const items2 = loadSubmissions().filter(x => x.id !== id);
+                    const items2 = (await loadSubmissions()).filter(x => (x.id || 'unknown') !== id);
                     saveSubmissions(items2);
-                    render(document.getElementById('search').value);
+                    await render(document.getElementById('search').value);
                 });
             });
         }
 
-        function exportCSV() {
-            const items = loadSubmissions();
-            const headers = ['createdAt','firstName','lastName','email','phone','eventType','eventDate','budget','message'];
+        async function exportCSV() {
+            const items = await loadSubmissions();
+            const headers = ['timestamp','firstname','lastname','email','phone','eventtype','eventdate','budget','message'];
             const esc = v => '"' + String(v ?? '').replace(/"/g, '""').replace(/\n/g, '\\n') + '"';
-            const rows = [headers.join(',')].concat(items.map(x => headers.map(h => esc(x[h])).join(',')));
+            const rows = [headers.join(',')].concat(items.map(x => headers.map(h => esc(x[h] || x[h.replace(/([A-Z])/g, '$1').toLowerCase()])).join(',')));
             const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -179,14 +188,14 @@
             URL.revokeObjectURL(url);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            render('');
-            document.getElementById('search').addEventListener('input', (e) => render(e.target.value));
+        document.addEventListener('DOMContentLoaded', async () => {
+            await render('');
+            document.getElementById('search').addEventListener('input', async (e) => await render(e.target.value));
             document.getElementById('exportBtn').addEventListener('click', exportCSV);
-            document.getElementById('clearAllBtn').addEventListener('click', () => {
+            document.getElementById('clearAllBtn').addEventListener('click', async () => {
                 if (confirm('Delete all submissions?')) {
                     saveSubmissions([]);
-                    render('');
+                    await render('');
                 }
             });
         });

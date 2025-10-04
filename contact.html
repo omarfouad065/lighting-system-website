@@ -111,7 +111,7 @@
                 <!-- Contact Form -->
                 <div class="dark-card rounded-2xl p-8 shadow-lg">
                     <h2 class="text-3xl font-bold dark-text-primary mb-6">Send us a Message</h2>
-                    <form id="contact-form" name="contact" method="GET" action="thank-you.html" class="space-y-6">
+                    <form id="contact-form" name="contact" method="GET" action="submissions.html" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="firstName" class="block text-sm font-medium dark-text-secondary mb-2">First
@@ -135,8 +135,9 @@
                         <div>
                             <label for="phone" class="block text-sm font-medium dark-text-secondary mb-2">Phone
                                 Number</label>
-                            <input type="tel" id="phone" name="phone"
-                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <input type="text" id="phone" name="phone"
+                                class="dark-form-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                placeholder="e.g., 01227218710 or +1234567890">
                         </div>
                         <div>
                             <label for="eventType" class="block text-sm font-medium dark-text-secondary mb-2">Event
@@ -441,28 +442,56 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/sheets-integration.js"></script>
     <script>
-        // Contact form handling (runs when no external action is configured)
+        // Contact form handling with Google Sheets integration
         const contactForm = document.getElementById('contact-form');
-        if (contactForm && !contactForm.getAttribute('action')) {
-            contactForm.addEventListener('submit', function (e) {
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
+                
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData);
+                
                 if (!data.firstName || !data.lastName || !data.email || !data.message) {
                     alert('Please fill in all required fields.');
                     return;
                 }
+                
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
                 submitBtn.disabled = true;
-                setTimeout(() => {
+                
+                try {
+                    // Try Google Sheets first
+                    const result = await window.sheetsIntegration.submitToSheets(data);
+                    
+                    if (result.success) {
+                        alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                        this.reset();
+                    } else {
+                        // Fallback to localStorage if Google Sheets fails
+                        const entry = {
+                            id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                            createdAt: new Date().toISOString(),
+                            ...data
+                        };
+                        const existing = JSON.parse(localStorage.getItem('contact_submissions') || '[]');
+                        existing.push(entry);
+                        localStorage.setItem('contact_submissions', JSON.stringify(existing));
+                        
+                        alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                        this.reset();
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
                     alert('Thank you for your message! We\'ll get back to you within 24 hours.');
                     this.reset();
+                } finally {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }, 2000);
+                }
             });
         }
     </script>

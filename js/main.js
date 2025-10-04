@@ -153,10 +153,11 @@ function validateField(field) {
         }
     }
     
-    // Phone validation
+    // Phone validation - accept any phone number format
     if (fieldName === 'phone' && value) {
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-        if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
+        // Allow any phone number format including numbers starting with 0
+        const phoneRegex = /^[\+]?[0-9][\d\s\-\(\)]{0,20}$/;
+        if (!phoneRegex.test(value)) {
             isValid = false;
             errorMessage = 'Please enter a valid phone number.';
         }
